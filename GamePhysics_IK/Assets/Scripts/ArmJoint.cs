@@ -2,14 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmJoint : MonoBehaviour {
+public class ArmJoint : MonoBehaviour
+{
+
+    public float MinAngle = -360;
+    public float MaxAngle = 360;
+
     public Vector3 RotationAxis;
     public Vector3 StartOffset;
-    private Transform _transform;
-    public char _rotationAxis;
+    public char _rotationAxis
+    {
+        get
+        {
+            if (RotationAxis == Vector3.forward)
+                return 'z';
+            if (RotationAxis == Vector3.right)
+                return 'x';
+            if (RotationAxis == Vector3.up)
+                return 'y';
+            return 'z';
+        }
+    }
 
-    private void Awake() {
-        _transform = this.transform;
-        StartOffset = _transform.localPosition;
+    private void Awake()
+    {
+        StartOffset = transform.localPosition;
     }
 }

@@ -24,8 +24,43 @@ public class ArmJoint : MonoBehaviour
         }
     }
 
+    public float angle
+    {
+        get {
+
+            if (_rotationAxis == 'x')
+            {
+                return transform.localRotation.eulerAngles.x;
+            }
+            else if (_rotationAxis == 'y')
+            {
+                return transform.localRotation.eulerAngles.y;
+            }
+            else if (_rotationAxis == 'z')
+            {
+                return transform.localRotation.eulerAngles.z;
+            }
+            return 0;
+        }
+        set {
+            switch (_rotationAxis)
+            {
+                case 'x':
+                    transform.localEulerAngles = new Vector3(value, 0, 0);
+                    break;
+                case 'y':
+                    transform.localEulerAngles = new Vector3(0, value, 0);
+                    break;
+                case 'z':
+                    transform.localEulerAngles = new Vector3(0, 0, value);
+                    break;
+            }
+        }
+    }
+
     private void Awake()
     {
         StartOffset = transform.localPosition;
+        RotationAxis = RotationAxis.normalized;
     }
 }

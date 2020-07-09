@@ -19,20 +19,8 @@ public class IKController : MonoBehaviour
         float[] angles = new float[Joints.Length];
 
         for (int i = 0; i < Joints.Length; i++)
-        {
-            if (Joints[i]._rotationAxis == 'x')
-            {
-                angles[i] = Joints[i].transform.localRotation.eulerAngles.x;
-            }
-            else if (Joints[i]._rotationAxis == 'y')
-            {
-                angles[i] = Joints[i].transform.localRotation.eulerAngles.y;
-            }
-            else if (Joints[i]._rotationAxis == 'z')
-            {
-                angles[i] = Joints[i].transform.localRotation.eulerAngles.z;
-            }
-        }
+            angles[i] = Joints[i].angle;
+
         Angles = angles;
     }
 
@@ -103,18 +91,8 @@ public class IKController : MonoBehaviour
             if (DistanceFromTarget(target, angles) < DistanceThreshold)
                 return;
 
-            switch (Joints[i]._rotationAxis)
-            {
-                case 'x':
-                    Joints[i].transform.localEulerAngles = new Vector3(angles[i], 0, 0);
-                    break;
-                case 'y':
-                    Joints[i].transform.localEulerAngles = new Vector3(0, angles[i], 0);
-                    break;
-                case 'z':
-                    Joints[i].transform.localEulerAngles = new Vector3(0, 0, angles[i]);
-                    break;
-            }
+            Joints[i].angle = angles[i];
+
         }
     }
 }

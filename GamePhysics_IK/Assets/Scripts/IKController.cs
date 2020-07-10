@@ -19,7 +19,8 @@ public class IKController : MonoBehaviour
         float[] angles = new float[Joints.Length];
 
         for (int i = 0; i < Joints.Length; i++)
-            angles[i] = Joints[i].angle;
+            // angles[i] = Joints[i].angle;
+            angles[i] = 0;
 
         Angles = angles;
     }
